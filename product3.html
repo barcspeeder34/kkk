@@ -18,7 +18,8 @@
     <main>
         <section>
             <h2>Product 3 Details</h2>
-            <img src="path/to/logo-image.png" alt="Product 3 Logo" style="width: 300px; height: auto;">
+            <!-- Update with the correct image file name -->
+            <img src="Untitled design.png" alt="Product 3 Logo" style="width: 300px; height: auto;">
             <p>This is the detailed description for Product 3. It features high-tech, vibrant designs.</p>
             <p>Price: 100 SEK</p>
             <button onclick="generateQRCode()">Purchase</button>
@@ -56,12 +57,4 @@
             const swishUrl = `swish://payment?data=${encodeURIComponent(swishData)}`;
 
             // Generate QR Code URL using QRServer API
-            const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(swishUrl)}`;
-            document.getElementById('qr-code').innerHTML = `<img src="${qrCodeUrl}" alt="Swish QR Code">`;
-
-            // Display the checkout section
-            document.getElementById('checkout').style.display = 'block';
-        }
-    </script>
-</body>
-</html>
+            const qr
