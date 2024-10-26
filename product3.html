@@ -18,18 +18,21 @@
     <main>
         <section>
             <h2>Product 3 Details</h2>
-            <!-- Updated image path with new filename -->
+            <!-- Display the product image -->
             <img src="Untitleddesign.png" alt="Product 3 Logo" style="width: 300px; height: auto;">
             <p>This is the detailed description for Product 3. It features high-tech, vibrant designs.</p>
-            <p>Price: 100 SEK</p>
-            <button onclick="generateQRCode()">Purchase</button>
+            <p>Price: <span id="price">100</span> SEK</p>
+            <button onclick="showCheckout()">Purchase</button>
         </section>
 
         <section id="checkout" style="display: none;">
             <h2>Checkout</h2>
             <p><strong>Order Number:</strong> <span id="order-number"></span></p>
             <p>Scan the QR code with your Swish app to complete the payment.</p>
-            <div id="qr-code"></div>
+            <div id="qr-code">
+                <img src="your-swish-qr-code.jpg" alt="Swish QR Code" style="width: 200px; height: 200px;">
+            </div>
+            <p>Total: <span id="total-amount">100</span> SEK</p>
         </section>
     </main>
 
@@ -43,23 +46,18 @@
             return 'ORD' + Math.floor(Math.random() * 1000000);
         }
 
-        function generateQRCode() {
-            const amount = 100; // Product price in SEK
+        // Function to display the checkout section with the QR code
+        function showCheckout() {
+            const price = document.getElementById('price').textContent; // Retrieve the price from the product page
             const orderNumber = generateOrderNumber(); // Generate a unique order number
-            const phoneNumber = "0735515463"; // Replace with your Swish phone number
 
-            // Display Order Number
+            // Display Order Number and Total Amount
             document.getElementById('order-number').textContent = orderNumber;
+            document.getElementById('total-amount').textContent = price;
 
-            // Proper Swish QR format following EMVCo structure
-            const swishPayload = `
-                000201
-                010211
-                5802SE
-                5303764
-                52045812
-                921173515463
-                020800000000
-                5802SE
-                5303764
-               
+            // Display the checkout section
+            document.getElementById('checkout').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
