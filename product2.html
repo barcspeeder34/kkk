@@ -61,9 +61,9 @@
             const swishData = `{"version":"1","payee":"${phoneNumber}","amount":${amount},"message":"${message}"}`;
             const swishUrl = `swish://payment?data=${encodeURIComponent(swishData)}`;
 
-            // Generate QR Code URL using Google Charts API
-            const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=${encodeURIComponent(swishUrl)}`;
-            document.getElementById('qr-code').innerHTML = `<img src="${qrCodeUrl}" alt="Swish QR Code" onerror="this.onerror=null; this.src='';">`;
+            // Generate QR Code URL using QRServer API
+            const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(swishUrl)}`;
+            document.getElementById('qr-code').innerHTML = `<img src="${qrCodeUrl}" alt="Swish QR Code">`;
         }
     </script>
 </body>
