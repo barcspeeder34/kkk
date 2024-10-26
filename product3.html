@@ -20,4 +20,40 @@
             <h2>Product 3 Details</h2>
             <img src="Untitleddesign.png" alt="Product 3 Logo" style="width: 300px; height: auto;">
             <p>This is the detailed description for Product 3. It features high-tech, vibrant designs.</p>
-            <p>Price: <span id
+            <p>Price: <span id="price">100</span> SEK</p>
+            <button onclick="generateSwishQRCode()">Purchase</button>
+        </section>
+
+        <section id="checkout" style="display: none;">
+            <h2>Checkout</h2>
+            <p><strong>Order Number:</strong> <span id="order-number"></span></p>
+            <p>Total: <span id="total-amount">100</span> SEK</p>
+            <p>Scan the QR code with your Swish app to complete the payment.</p>
+            <div id="qr-code"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Website. All rights reserved.</p>
+    </footer>
+
+    <script type="text/javascript">
+        // Function to generate a unique order number
+        function generateOrderNumber() {
+            return 'ORD' + Math.floor(Math.random() * 1000000);
+        }
+
+        // Function to generate a Swish QR code with dynamic order number and amount
+        function generateSwishQRCode() {
+            const amount = document.getElementById('price').textContent; // Product price
+            const orderNumber = generateOrderNumber(); // Generate a unique order number
+            const phoneNumber = "0735515463"; // Replace with your Swish phone number
+
+            // Display Order Number and Total Amount
+            document.getElementById('order-number').textContent = orderNumber;
+            document.getElementById('total-amount').textContent = amount;
+
+            // Generate Swish data according to Swish's QR code format
+            const swishData = `C0000000002000000002000000000000020735515463${amount}`;
+
+            // Generate QR Code URL using QRServer API with Sw
