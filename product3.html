@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product 3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Product 3</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Product 3 Details</h2>
+            <img src="path/to/logo-image.png" alt="Product 3 Logo" style="width: 300px; height: auto;">
+            <p>This is the detailed description for Product 3. It features high-tech, vibrant designs.</p>
+            <p>Price: 100 SEK</p>
+            <button onclick="generateQRCode()">Purchase</button>
+        </section>
+
+        <section id="checkout" style="display: none;">
+            <h2>Checkout</h2>
+            <p><strong>Order Number:</strong> <span id="order-number"></span></p>
+            <p>Scan the QR code with your Swish app to complete the payment.</p>
+            <div id="qr-code"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Website. All rights reserved.</p>
+    </footer>
+
+    <script type="text/javascript">
+        // Function to generate a unique order number
+        function generateOrderNumber() {
+            return 'ORD' + Math.floor(Math.random() * 1000000);
+        }
+
+        function generateQRCode() {
+            // Set the price and message
+            const amount = 100; // Product price in SEK
+            const orderNumber = generateOrderNumber(); // Generate a unique order number
+            const phoneNumber = "0735515463"; // Replace with your Swish phone number
+
+            // Display Order Number
+            document.getElementById('order-number').textContent = orderNumber;
+
+            // Generate Swish payment data
+            const swishData = `{"version":"1","payee":"${phoneNumber}","amount":${amount},"message":"Order ${orderNumber}"}`;
+            const swishUrl = `swish://payment?data=${encodeURIComponent(swishData)}`;
+
+            // Generate QR Code URL using QRServer API
+            const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(swishUrl)}`;
+            document.getElementById('qr-code').innerHTML = `<img src="${qrCodeUrl}" alt="Swish QR Code">`;
+
+            // Display the checkout section
+            document.getElementById('checkout').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
