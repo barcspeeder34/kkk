@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Product 2</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Product 2 Details</h2>
+            <p>This is the detailed description for Product 2. Here, you can add any specific details, features, or benefits related to the product.</p>
+            <p>Price: 100 SEK</p>
+        </section>
+
+        <section>
+            <h2>Swish Payment</h2>
+            <p>Enter the amount and a message, then scan the QR code with your Swish app to complete the payment.</p>
+            <form id="payment-form">
+                <label for="amount">Amount (SEK):</label>
+                <input type="number" id="amount" value="100" required><br><br>
+                
+                <label for="message">Message:</label>
+                <input type="text" id="message"><br><br>
+
+                <button type="button" onclick="generateQRCode()">Generate QR Code</button>
+            </form>
+
+            <div id="payment-summary"></div>
+            <div id="qr-code"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Website. All rights reserved.</p>
+    </footer>
+
+    <script type="text/javascript">
+        function generateQRCode() {
+            const amount = document.getElementById('amount').value;
+            const message = document.getElementById('message').value;
+            const phoneNumber = "YOUR_SWISH_NUMBER_HERE"; // Replace with your Swish phone number
+
+            // Display Payment Summary
+            document.getElementById('payment-summary').innerHTML = `
+                <p><strong>Payment Details:</strong></p>
+                <p>Amount: ${amount} SEK</p>
+                <p>Message: ${message}</p>
+            `;
+
+            // Generate Swish URL
+            const swishData = `{"version":"1","payee":"${phoneNumber}","amount":${amount},"message":"${message}"}`;
+            const swishUrl = `swish://payment?data=${encodeURIComponent(swishData)}`;
+
+            // Generate QR Code URL using Google Charts API
+            const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=${encodeURIComponent(swishUrl)}`;
+            document.getElementById('qr-code').innerHTML = `<img src="${qrCodeUrl}" alt="Swish QR Code">`;
+        }
+    </script>
+</body>
+</html>
