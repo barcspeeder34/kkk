@@ -18,47 +18,6 @@
     <main>
         <section>
             <h2>Product 3 Details</h2>
-            <!-- Display the product image -->
             <img src="Untitleddesign.png" alt="Product 3 Logo" style="width: 300px; height: auto;">
             <p>This is the detailed description for Product 3. It features high-tech, vibrant designs.</p>
-            <p>Price: <span id="price">100</span> SEK</p>
-            <button onclick="showCheckout()">Purchase</button>
-        </section>
-
-        <section id="checkout" style="display: none;">
-            <h2>Checkout</h2>
-            <p><strong>Order Number:</strong> <span id="order-number"></span></p>
-            <p>Scan the QR code with your Swish app to complete the payment.</p>
-            <div id="qr-code">
-                <!-- Use the updated swish.png image here -->
-                <img src="swish.png" alt="Swish QR Code" style="width: 200px; height: 200px;">
-            </div>
-            <p>Total: <span id="total-amount">100</span> SEK</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 My Website. All rights reserved.</p>
-    </footer>
-
-    <script type="text/javascript">
-        // Function to generate a unique order number
-        function generateOrderNumber() {
-            return 'ORD' + Math.floor(Math.random() * 1000000);
-        }
-
-        // Function to display the checkout section with the QR code
-        function showCheckout() {
-            const price = document.getElementById('price').textContent; // Retrieve the price from the product page
-            const orderNumber = generateOrderNumber(); // Generate a unique order number
-
-            // Display Order Number and Total Amount
-            document.getElementById('order-number').textContent = orderNumber;
-            document.getElementById('total-amount').textContent = price;
-
-            // Display the checkout section
-            document.getElementById('checkout').style.display = 'block';
-        }
-    </script>
-</body>
-</html>
+            <p>Price: <span id
