@@ -24,7 +24,7 @@
 
         <section>
             <h2>Swish Payment</h2>
-            <p>Enter the amount and a message, then scan the QR code with your Swish app to complete the payment.</p>
+            <p>Enter the amount and a message, then click "Generate QR Code" to create the payment QR code for Swish.</p>
             <form id="payment-form">
                 <label for="amount">Amount (SEK):</label>
                 <input type="number" id="amount" value="100" required><br><br>
@@ -63,7 +63,7 @@
 
             // Generate QR Code URL using Google Charts API
             const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=${encodeURIComponent(swishUrl)}`;
-            document.getElementById('qr-code').innerHTML = `<img src="${qrCodeUrl}" alt="Swish QR Code">`;
+            document.getElementById('qr-code').innerHTML = `<img src="${qrCodeUrl}" alt="Swish QR Code" onerror="this.onerror=null; this.src='';">`;
         }
     </script>
 </body>
