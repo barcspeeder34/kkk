@@ -26,9 +26,10 @@
 
         <section id="checkout" style="display: none;">
             <h2>Checkout</h2>
+            <p>Total Amount: <strong>100 SEK</strong></p>
             <p>Scan the QR code with your Swish app to complete the payment.</p>
             <div id="qr-code">
-                <!-- Display the Swish QR code image you provided -->
+                <!-- Display the provided Swish QR code image -->
                 <img src="swish.jpg" alt="Swish QR Code" style="width: 200px; height: 200px;">
             </div>
         </section>
@@ -40,7 +41,7 @@
 
     <script type="text/javascript">
         function showCheckout() {
-            // Display the checkout section with the provided QR code image
+            // Display the checkout section with the Swish QR code image and price
             document.getElementById('checkout').style.display = 'block';
         }
     </script>
