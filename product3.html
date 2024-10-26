@@ -53,7 +53,16 @@
             document.getElementById('order-number').textContent = orderNumber;
             document.getElementById('total-amount').textContent = amount;
 
-            // Generate Swish data according to Swish's QR code format
-            const swishData = `C0000000002000000002000000000000020735515463${amount}`;
+            // Generate Swish payment URL
+            const swishUrl = `swish://payment?version=1&payee=${phoneNumber}&amount=${amount}&message=Order ${orderNumber}`;
 
-            // Generate QR Code URL using QRServer API with Sw
+            // Generate QR Code URL using QRServer API
+            const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(swishUrl)}`;
+            document.getElementById('qr-code').innerHTML = `<img src="${qrCodeUrl}" alt="Swish QR Code">`;
+
+            // Display the checkout section
+            document.getElementById('checkout').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
